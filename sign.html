@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Language</title>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Create three equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 33.33%;
+        padding: 100px;
+        height: 400px; /* Should be removed. Only for demonstration */
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      #myImg:hover {
+        opacity: 0.7;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+      }
+
+      /* Modal Content (image) */
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 800px;
+      }
+
+      /* Add Animation */
+      .modal-content,
+      #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+      }
+
+      @-webkit-keyframes zoom {
+        from {
+          -webkit-transform: scale(0);
+        }
+        to {
+          -webkit-transform: scale(1);
+        }
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      /* The Close Button */
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .form-popup {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+      }
+
+      .close0 {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close0:hover,
+      .close0:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .close1 {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close1:hover,
+      .close1:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align:center;margin-top: 60px">Wave 'n' Connect</h2>
+
+    <div class="form-popup" id="myForm">
+      <!-- <form action="/action_page.php" class="form-container"></form> -->
+      <span class="close0">&times;</span>
+      <div style="text-align: center;margin-top:300px">
+        <button
+          style="background-color: yellow ;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b>Learn Basic Signs</b>
+        </button>
+        <button
+          style="background-color: green ;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b>Learn Phrases</b>
+        </button>
+        <button
+          style="background-color: violet;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b>Practice Quizzes</b>
+        </button>
+      </div>
+    </div>
+    <div class="form-popup" id="myForm1">
+      <span class="close1">&times;</span>
+      <div style="text-align: center;margin-top:300px">
+        <button
+          style="background-color: yellow ;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b> Sign To Text</b>
+        </button>
+        <button
+          style="background-color: green ;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b> Sign To Voice</b>
+        </button>
+        <button
+          style="background-color: violet;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b>Voice To Sign</b>
+        </button>
+        <button
+          style="background-color: purple;height: 100px;width: 200px;margin-right: 50px; font-size: 20px;"
+        >
+          <b> Text To Sign</b>
+        </button>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01" />
+    </div>
+    <div class="row">
+      <div id="Translator" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/translator.png" />
+        <b>Translator</b>
+      </div>
+      <div id="Keyboard" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/keyboard.png" />
+        <b>Convenience Keyboard</b>
+      </div>
+      <div id="Messaging" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/phrases.png" />
+        <b>Messaging</b>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="Phrases" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/log.png" />
+        <b>Frequent Phrases</b>
+      </div>
+      <div id="Learning" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/learning.png" />
+        <b>Happy Learning</b>
+      </div>
+      <div id="Feedback" class="column" style="background-color:#FFFF;">
+        <img src="src/Images/feedback.png" onclick="" />
+        <b>Feedback</b>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+  <!-- <body>
+	<div id="app"></div>
+
+	
+</body> -->
+</html>
